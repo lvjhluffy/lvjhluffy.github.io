@@ -176,7 +176,7 @@
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>二叉小根堆可以用数组来表示，父子结点的下标关系为：<br>leftNo = parentNo &lt;&lt; 2 + 1<br>rightNo = parentNo &lt;&lt; 2 + 2<br>parentNo = leftNo - 1 &gt;&gt; 2</p>
 <h2 id="方法剖析"><a href="#方法剖析" class="headerlink" title="方法剖析"></a>方法剖析</h2><p>add() / offer()<br>时间复杂度：log(N)<br>向优先队列中加入元素，新加入的元素（队尾）如果破坏了小根堆的性质可以通过siftUp()来进行调整，调整的过程为：从指定的位置k开始，逐层地将当前的要插入节点的直x与x的parent比较并交换，直到x &gt;= queue[parent] 为止，顺便提一嘴这里的比较可以是默认的自然顺序，也可以是指定的Comparator的顺序，以下不再赘述。 </p>
 <hr>
-<p>remove(Object o) / poll()<br>时间复杂度：log(N)<br>poll():获取并删除队首元素。因为删除操作可能会改变队列的结构，为维护小根堆的性质（大根堆同理）需要进行必要的调整。<br>调整过程：首先记录下queue[0]，然后用queue<a href="%E5%8D%B3%E9%98%9F%E5%B0%BE%E5%85%83%E7%B4%A0">size - 1</a>替换队首元素，再调用swiftDown()对堆进行调整，最后返回调整完后的queue[0]。<br>swiftDown(int k, E x)方法：c从指定的位置k开始，向下逐层地将x与当前节点的左右孩子中较小的交换，直到x &lt;= 左右孩子节点。<br>remove(Object o):删除队列中与o相等的元素（如果有多个元素与o相等，则只删除一个），该方法不是Queue接口的方法，而是Collection接口的方法。由于删除操作会改变队列结构，所以要进行调整。删除可以分为两种情况：<br>1.删除的是最后一个元素，无需调整，直接删除即可；<br>2.删除的不是最后一个元素，从删除点开始以queue<a href="%E9%98%9F%E5%B0%BE%E5%85%83%E7%B4%A0">size - 1</a>作为参照进行一次swiftDown()操作，如果不成功还需要调用一次swiftUp()来“向上浮”。</p>
+<p>remove(Object o) / poll()<br>时间复杂度：log(N)<br>poll():获取并删除队首元素。因为删除操作可能会改变队列的结构，为维护小根堆的性质（大根堆同理）需要进行必要的调整。<br>调整过程：首先记录下queue[0]，然后用queue<a href="%E5%8D%B3%E9%98%9F%E5%B0%BE%E5%85%83%E7%B4%A0">–size</a>替换队首元素，再调用swiftDown()对堆进行调整，最后返回调整完后的queue[0]。<br>swiftDown(int k, E x)方法：c从指定的位置k开始，向下逐层地将x与当前节点的左右孩子中较小的交换，直到x &lt;= 左右孩子节点。<br>remove(Object o):删除队列中与o相等的元素（如果有多个元素与o相等，则只删除一个），该方法不是Queue接口的方法，而是Collection接口的方法。由于删除操作会改变队列结构，所以要进行调整。删除可以分为两种情况：<br>1.删除的是最后一个元素，无需调整，直接删除即可；<br>2.删除的不是最后一个元素，从删除点开始以queue<a href="%E9%98%9F%E5%B0%BE%E5%85%83%E7%B4%A0">–size</a>作为参照进行一次swiftDown()操作，如果不成功还需要调用一次swiftUp()来“向上浮”。</p>
 
       
 
