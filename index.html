@@ -172,7 +172,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>PriorityQueue:优先队列，基于优先堆的无界队列，这个优先队列中的元素可以在默认自然排序，也可以通过提供的Comparator(比较器)在队列实例化时进行排序。<br>优先队列不支持空直，也不支持no-comparable对象(例如用户自定义的类且没有为其提供任何比较器对象)。PriorityQueue要求使用Comparable和Comparator接口给对象排序。<br>基于小根堆(大根堆类似)：优先队列的头是基于自然排序或Comparator排序的最小元素，如果有多个最小元素则随机取一个，当我们获取队列时，返回queue[0]。<br>注：PriorityQueue是非线程安全的，在多线程环境中，可以使用官方文档建议的PriorityBlockingQueue(实现BlockingQueue接口)。</p>
+        <p><em>转载</em> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/CarpenterLee/p/5488070.html">https://www.cnblogs.com/CarpenterLee/p/5488070.html</a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>PriorityQueue:优先队列，基于优先堆的无界队列，这个优先队列中的元素可以在默认自然排序，也可以通过提供的Comparator(比较器)在队列实例化时进行排序。<br>优先队列不支持空直，也不支持no-comparable对象(例如用户自定义的类且没有为其提供任何比较器对象)。PriorityQueue要求使用Comparable和Comparator接口给对象排序。<br>基于小根堆(大根堆类似)：优先队列的头是基于自然排序或Comparator排序的最小元素，如果有多个最小元素则随机取一个，当我们获取队列时，返回queue[0]。<br>注：PriorityQueue是非线程安全的，在多线程环境中，可以使用官方文档建议的PriorityBlockingQueue(实现BlockingQueue接口)。</p>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><!-- Images -->
 <p><img src="/img/%E4%BA%8C%E5%8F%89%E5%A0%86.png" alt="层次遍历小根堆"><br>二叉小根堆可以用数组来表示，父子结点的下标关系为：<br>leftNo = parentNo &lt;&lt; 2 + 1<br>rightNo = parentNo &lt;&lt; 2 + 2<br>parentNo = leftNo - 1 &gt;&gt; 2</p>
 <h2 id="方法剖析"><a href="#方法剖析" class="headerlink" title="方法剖析"></a>方法剖析</h2><p>add() / offer()<br>时间复杂度：log(N)<br><img src="/img/swiftUp.png" alt="上浮"></p>
