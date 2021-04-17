@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>Archives: 2021/4 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/archives/2021/04/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
@@ -152,242 +152,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-快速排序-归并排序算法梳理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/17/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A2%B3%E7%90%86/">快速排序/归并排序算法梳理</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/17/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A2%B3%E7%90%86/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/04/17/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A2%B3%E7%90%86/" class="archive-article-date">
   	<time datetime="2021-04-17T10:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-17</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="时间、空间复杂度比较"><a href="#时间、空间复杂度比较" class="headerlink" title="时间、空间复杂度比较"></a>时间、空间复杂度比较</h2><p>排序算法    平均时间复杂度    最差时间复杂度    空间复杂度    数据稳定性<br>快速排序      O(N<em>log2N)        O(n2)       O(1)          不稳定<br>归并排序      O(N</em>log2N)        O(N*log2N)       O(N)        稳定</p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>算法思想</strong><br>1.选取第一个数作为基准<br>2.将比基准小的数交换到前面，比基准大的数交换到后面<br>3.对左右区间重复第二步，直到各区间只剩一个数为止</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>void quickSort(int[] nums, int left, int right) {<br>    if (left &gt;= right)<br>        return;<br>    int first = left;<br>    int last = right;<br>    int key = nums[left];<br>    while (first &lt; last) {<br>        while (first &lt; last &amp;&amp; nums[last] &gt;= key)<br>            last–;<br>        if (first &lt; last)<br>            nums[first++] = nums[last];</p>
-<pre><code>    while (first &lt; last &amp;&amp; nums[first &lt;= key))
-        first++;
-    if (first &lt; last)
-        nums[last--] = nums[first];    
-&#125;
-
-nums[first] = key;
-quickSort(nums, left, last - 1);
-quickSort(nums, last + 1, right);
-</code></pre>
-<p>}</p>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p><strong>算法思想</strong><br>归并排序是建立在归并操作上的一种排序算法，=。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列。把长度为n的序列不断分割直到长度为1（一个数必有序），然后再合并，直到得到排好序的原序列。</p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>void merge(int[] nums, int left, int right) {    /* right是闭区间 */<br>    if (left == right)<br>        return;<br>    int mid = left + (right - left) / 2;<br>    merge(nums, left, mid);<br>    merge(nums, mid + 1, right);<br>    mergeSort(nums, left, right);<br>}</p>
-<p>void mergeSort(int[] nums, int left, int right) {<br>    int[] temp = new int[nums.length];<br>    for (int i = 0; i &lt;= right; i++)<br>        temp[i] = nums[i];<br>    int i = left;<br>    int mid = left + (right - left) / 2;<br>    int j = mid + 1;<br>    for (int k = left; k &lt;= right; k++) {<br>        if (i == mid + 1) {<br>            nums[k] = temp[j];<br>            j++;<br>        } else if (j == right + 1) {<br>            nums[k] = temp[i];<br>            i++;<br>        } else if (temp[i] &lt;= nums[j]) {<br>            nums[k] = temp[i];<br>            i++;<br>        } else {<br>            nums[k] = temp[j];<br>            j++;<br>        }<br>    }<br>}</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/17/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A2%B3%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PriorityQueue的实现原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/19/PriorityQueue%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">PriorityQueue的实现原理</a>
+      <a class="archive-article-title" href="/2021/04/17/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A2%B3%E7%90%86/">快速排序/归并排序算法梳理</a>
     </h1>
   
 
-        
-        <a href="/2021/03/19/PriorityQueue%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2021-03-20T02:50:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>转载</em> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/CarpenterLee/p/5488070.html">https://www.cnblogs.com/CarpenterLee/p/5488070.html</a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>PriorityQueue:优先队列，基于优先堆的无界队列，这个优先队列中的元素可以在默认自然排序，也可以通过提供的Comparator(比较器)在队列实例化时进行排序。<br>优先队列不支持空直，也不支持no-comparable对象(例如用户自定义的类且没有为其提供任何比较器对象)。PriorityQueue要求使用Comparable和Comparator接口给对象排序。<br>基于小根堆(大根堆类似)：优先队列的头是基于自然排序或Comparator排序的最小元素，如果有多个最小元素则随机取一个，当我们获取队列时，返回**queue[0]**。<br>注：PriorityQueue是非线程安全的，在多线程环境中，可以使用官方文档建议的PriorityBlockingQueue(实现BlockingQueue接口)。</p>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><!-- Images -->
-<p><img src="/img/%E4%BA%8C%E5%8F%89%E5%A0%86.png" alt="层次遍历小根堆"><br>二叉小根堆可以用数组来表示，父子结点的下标关系为：<br>leftNo = parentNo &lt;&lt; 2 + 1<br>rightNo = parentNo &lt;&lt; 2 + 2<br>parentNo = leftNo - 1 &gt;&gt; 2</p>
-<h2 id="方法剖析"><a href="#方法剖析" class="headerlink" title="方法剖析"></a>方法剖析</h2><p>add() / offer()<br>时间复杂度：log(N)<br><img src="/img/swiftUp.png" alt="上浮"></p>
-<!-- Strong -->
-<ul>
-<li>add(): 向优先队列中加入元素，新加入的元素（队尾）如果破坏了小根堆的性质可以通过siftUp()来进行调整，调整的过程为：<strong>从指定的位置k开始，逐层地将当前的要插入节点的直x与x的parent比较并交换，直到x &gt;= queue[parent] 为止</strong>，顺便提一嘴这里的比较可以是默认的自然顺序，也可以是指定的Comparator的顺序，以下不再赘述。 </li>
-</ul>
-<hr>
-<p>remove(Object o) / poll()<br>时间复杂度：log(N)<br><img src="/img/swiftDown.png" alt="下沉"></p>
-<!-- Strong -->
-<ul>
-<li><p>poll(): 获取并删除队首元素。因为删除操作可能会改变队列的结构，为维护小根堆的性质（大根堆同理）需要进行必要的调整。<br>调整过程：<strong>首先记录下queue[0]，然后用queue【size-1】(即队尾元素)替换队首元素，再调用swiftDown()对堆进行调整，最后返回调整完后的queue[0]<strong>。<br>swiftDown(int k, E x)方法：</strong>从指定的位置k开始，向下逐层地将x与当前节点的左右孩子中较小的交换，直到x &lt;= 左右孩子节点</strong>。</p>
-</li>
-<li><p>remove(Object o): 删除队列中与o相等的元素（如果有多个元素与o相等，则只删除一个），该方法不是Queue接口的方法，而是Collection接口的方法。由于删除操作会改变队列结构，所以要进行调整。删除可以分为两种情况：</p>
-</li>
-</ul>
-<p>1.删除的是最后一个元素:无需调整，直接删除即可；<br>2.删除的不是最后一个元素:<strong>从删除点开始以queue【size-1】(队尾元素)作为参照进行一次swiftDown()操作，如果不成功还需要调用一次swiftUp()来“向上浮”</strong>。</p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/19/PriorityQueue%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/18/hello-world/" class="archive-article-date">
-  	<time datetime="2021-03-18T13:25:22.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/18/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -409,9 +214,9 @@ quickSort(nums, last + 1, right);
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
