@@ -172,29 +172,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="时间、空间复杂度比较"><a href="#时间、空间复杂度比较" class="headerlink" title="时间、空间复杂度比较"></a>时间、空间复杂度比较</h2><p>排序算法    平均时间复杂度    最差时间复杂度    空间复杂度    数据稳定性<br>快速排序      O(N*log2N)            O(n2)           O(1)          不稳定</p>
-<p>归并排序      O(N<em>log2N)            O(N</em>log2N)        O(N)         稳定</p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>算法思想</strong></p>
-<ol>
-<li>选取第一个数作为基准;</li>
-<li>将比基准小的数交换到前面，比基准大的数交换到后面;</li>
-<li>对左右区间重复第二步，直到各区间只剩一个数为止.</li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>void quickSort(int[] nums, int left, int right) {<br>        if (left &gt;= right)<br>        return;<br>    int first = left;<br>    int last = right;<br>    int key = nums[left];<br>    while (first &lt; last) {<br>        while (first &lt; last &amp;&amp; nums[last] &gt;= key)<br>            last–;<br>        if (first &lt; last)<br>            nums[first++] = nums[last];</p>
-<pre><code>    while (first &lt; last &amp;&amp; nums[first &lt;= key))
-        first++;
-    if (first &lt; last)
-        nums[last--] = nums[first];    
-&#125;
-
-nums[first] = key;
-quickSort(nums, left, last - 1);
-quickSort(nums, last + 1, right);
-</code></pre>
-<p>}</p>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p><strong>算法思想</strong><br>归并排序是建立在归并操作上的一种排序算法，=。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列。把长度为n的序列不断分割直到长度为1（一个数必有序），然后再合并，直到得到排好序的原序列。</p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>void merge(int[] nums, int left, int right) {    /* right是闭区间 */<br>    if (left == right)<br>        return;<br>    int mid = left + (right - left) / 2;<br>    merge(nums, left, mid);<br>    merge(nums, mid + 1, right);<br>    mergeSort(nums, left, right);<br>}</p>
-<p>void mergeSort(int[] nums, int left, int right) {<br>    int[] temp = new int[nums.length];<br>    for (int i = 0; i &lt;= right; i++)<br>        temp[i] = nums[i];<br>    int i = left;<br>    int mid = left + (right - left) / 2;<br>    int j = mid + 1;<br>    for (int k = left; k &lt;= right; k++) {<br>        if (i == mid + 1) {<br>            nums[k] = temp[j];<br>            j++;<br>        } else if (j == right + 1) {<br>            nums[k] = temp[i];<br>            i++;<br>        } else if (temp[i] &lt;= nums[j]) {<br>            nums[k] = temp[i];<br>            i++;<br>        } else {<br>            nums[k] = temp[j];<br>            j++;<br>        }<br>    }<br>}</p>
+        <h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>算法思想</strong><br>1.选取第一个数作为基准；<br>2.将比基准小的数交换到前面，比基准大的数交换到后面；<br>3.对左右区间重复第二步，直到各区间只剩一个数为止。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><img src="/img/QUICKSORT.png" alt="快排"></p>
+<h2 id="快排的时间、空间复杂度"><a href="#快排的时间、空间复杂度" class="headerlink" title="快排的时间、空间复杂度"></a>快排的时间、空间复杂度</h2><ul>
+<li>平均时间复杂度：O(N*log2N)    </li>
+<li>最差时间复杂度：O(n2)           </li>
+<li>空间复杂度：O(1)         </li>
+<li>数据稳定性： 不稳定</li>
+</ul>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p><strong>算法思想</strong><br>归并排序是建立在归并操作上的一种排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列。把长度为n的序列不断分割直到长度为1（一个数必有序），然后再合并，直到得到排好序的原序列。</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p><img src="/img/MERGESORT.png" alt="归并"></p>
+<h2 id="归并排序的时间、空间复杂度"><a href="#归并排序的时间、空间复杂度" class="headerlink" title="归并排序的时间、空间复杂度"></a>归并排序的时间、空间复杂度</h2><ul>
+<li>平均时间复杂度：O(N*log2N)    </li>
+<li>最差时间复杂度：O(N*log2N)           </li>
+<li>空间复杂度：O(N)         </li>
+<li>数据稳定性： 稳定</li>
+</ul>
 
       
 
